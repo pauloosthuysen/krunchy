@@ -1,10 +1,9 @@
 package pho.homeautomation
 
-import pho.ActionSchedulesService
-import pho.User
-import controlpanel.*
-
+import controlpanel.MenuItem
+import controlpanel.MenuItemCategory
 import grails.converters.JSON
+import pho.ActionSchedulesService
 
 class HmaController {
     def beforeInterceptor = [action: this.&checkUser, except: ['execActionScripts','panicButton']]

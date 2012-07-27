@@ -1,7 +1,7 @@
 package pho.budget
 
-import controlpanel.MenuItemCategory
 import controlpanel.MenuItem
+import controlpanel.MenuItemCategory
 
 class BudController {
     def beforeInterceptor = [action: this.&checkUser]

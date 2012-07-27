@@ -1,7 +1,6 @@
 package pho.budget
 
 import grails.converters.JSON
-import grails.web.JSONBuilder
 
 class BudLocationController {
     def beforeInterceptor = [action: this.&checkUser]
