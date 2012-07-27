@@ -1,5 +1,8 @@
 package pho.budget
 
+import grails.converters.JSON
+import grails.web.JSONBuilder
+
 class BudLocationController {
     def beforeInterceptor = [action: this.&checkUser]
     static scaffold = true
@@ -10,4 +13,16 @@ class BudLocationController {
             return false
         }
     }
+
+    def getExistingLocationInfo(String type, String term){
+        def locations = BudLocation.list().findAll {it.properties.get(type).toLowerCase() =~ term.toLowerCase()}
+        def returnArray = []
+        locations.each {
+            if(!returnArray.contains(it.properties.get(type))){
+                returnArray.add(it.properties.get(type))
+            }
+        }
+        render returnArray as JSON
+    }
+
 }
