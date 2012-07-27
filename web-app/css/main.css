@@ -49,6 +49,7 @@ body {
 
 #grailsLogo {
 	background-color: #abbf78;
+    margin-top: 50px;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */
@@ -200,6 +201,22 @@ img {
 
 .nav a.create {
 	background-image: url(../images/skin/database_add.png);
+}
+
+.nav a.hma {
+	background-image: url(../images/menuitems/homeautomation.png);
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-size: 20px 20px;
+}
+
+.nav a.budget {
+	background-image: url(../images/menuitems/budget.png);
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-size: 20px 20px;
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */
