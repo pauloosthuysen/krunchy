@@ -39,6 +39,8 @@
 						<g:sortableColumn property="suburb" title="${message(code: 'budLocation.suburb.label', default: 'Suburb')}" />
 					
 						<g:sortableColumn property="description" title="${message(code: 'budLocation.description.label', default: 'Description')}" />
+
+                        <th></th>
 					
 					</tr>
 				</thead>
@@ -55,6 +57,8 @@
 						<td>${fieldValue(bean: budLocationInstance, field: "suburb")}</td>
 					
 						<td>${fieldValue(bean: budLocationInstance, field: "description")}</td>
+
+                        <td><a href="${createLink(controller: "budTransaction",action: "showPerLocation")}?locationId=${budLocationInstance.id}">Transactions</a></td>
 					
 					</tr>
 				</g:each>

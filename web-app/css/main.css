@@ -219,6 +219,22 @@ img {
     background-size: 20px 20px;
 }
 
+.nav a.categories {
+	background-image: url(../images/menuitems/budget.png);
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-size: 20px 20px;
+}
+
+.nav a.location {
+	background-image: url(../images/menuitems/budget.png);
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-size: 20px 20px;
+}
+
 /* CREATE/EDIT FORMS AND SHOW PAGES */
 
 fieldset,
