@@ -34,6 +34,7 @@ class BootStrap {
         new controlpanel.MenuItem(name: "Control Appliances", component: "hma/controlDevices", imgFilename: "controldevices.png", forAdmin: false, menuItemCategory: hmaMenuItemCat).save()
 
         //normal BudCP Items
+        new controlpanel.MenuItem(name: "Overview", component: "budOverview", imgFilename: "transactions.png", forAdmin: false, menuItemCategory: budMenuItemCat).save()
         new controlpanel.MenuItem(name: "Transactions", component: "budTransaction", imgFilename: "transactions.png", forAdmin: false, menuItemCategory: budMenuItemCat).save()
         new controlpanel.MenuItem(name: "Categories", component: "budCategory", imgFilename: "transactioncategories.png", forAdmin: false, menuItemCategory: budMenuItemCat).save()
         new controlpanel.MenuItem(name: "Locations", component: "budLocation", imgFilename: "locations.png", forAdmin: false, menuItemCategory: budMenuItemCat).save()
