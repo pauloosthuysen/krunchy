@@ -46,6 +46,9 @@
       #summary div.total div.totValue{
           width: 250px;
       }
+      #logoutPanel{
+          margin: 30px;
+      }
   </style>
 </head>
 <body>
@@ -130,6 +133,9 @@
                 </tr>
             </table>
         </div>
+    </div>
+    <div id="logoutPanel">
+        <g:render template="/logoutPanel"/>
     </div>
 </body>
 </html>
