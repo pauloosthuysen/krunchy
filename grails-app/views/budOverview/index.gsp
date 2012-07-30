@@ -27,9 +27,24 @@
       .total{
           text-align: right;
           font-weight: bold;
+          border-top: 5px double #eee;
       }
       .amount{
           text-align: right;
+      }
+      #dateSelector{
+          text-align: right;
+          padding: 0px 20px 0px 0px;
+          font-weight: bold;
+      }
+      #summary{
+          padding: 10px;
+      }
+      #summary div.total div{
+          display: inline-block;
+      }
+      #summary div.total div.totValue{
+          width: 250px;
       }
   </style>
 </head>
@@ -43,11 +58,11 @@
     <div class="content">
         <h1>Overview</h1>
         <div id="dateSelector">
-            <%
-                def curDate = new Date()
-            %>
-            <label>From: <g:datePicker name="fromDate" value="${new Date(curDate.year, curDate.month, 1).clearTime()}" precision="day" relativeYears="[-5..5]"/></label>
-            <label>To: <g:datePicker name="toDate" value="${new Date()}" precision="day" relativeYears="[-5..5]"/></label>
+            <g:form controller="budOverview" action="index">
+                <label>From: <g:datePicker name="fromDate" value="${fromDate}" precision="day" relativeYears="[-5..5]"/></label>
+                <label>To: <g:datePicker name="toDate" value="${toDate}" precision="day" relativeYears="[-5..5]"/></label>
+                <g:submitButton name="applyDatesButton" value="Set Filter"/>
+            </g:form>
         </div>
         <div id="overviewContent">
             <div id="incomes">
@@ -60,9 +75,9 @@
                     </tr>
                     <g:each in="${incomes}" var="i">
                         <tr>
-                            <td>${i.date}</td>
+                            <td>${i.date.format("yyyy-MM-dd")}</td>
                             <td>${i.description}</td>
-                            <td class="amount">${sprintf("R %5.2f", i.amount.toBigDecimal())}</td>
+                            <td class="amount">${sprintf("R %.2f", i.amount.toBigDecimal())}</td>
                         </tr>
                     </g:each>
                     <tr>
@@ -80,16 +95,40 @@
                     </tr>
                     <g:each in="${expenses}" var="i">
                         <tr>
-                            <td>${i.date}</td>
+                            <td>${i.date.format("yyyy-MM-dd")}</td>
                             <td>${i.description}</td>
-                            <td class="amount">${sprintf("R %5.2f", i.amount.toBigDecimal())}</td>
+                            <td class="amount">${sprintf("R %.2f", i.amount.toBigDecimal())}</td>
                         </tr>
                     </g:each>
                     <tr>
-                        <td colspan="3" class="total">${sprintf("R %5.2f", expensesTotal)}</td>
+                        <td colspan="3" class="total">${sprintf("R %.2f", expensesTotal)}</td>
                     </tr>
                 </table>
             </div>
+        </div>
+        <div id="summary">
+            <table>
+                <tr>
+                    <td>Balance:</td>
+                    <td>${sprintf("R %.2f", balance)}</td>
+                </tr>
+                <tr>
+                    <td>Days left of month, including today (${new Date().format("MMMMM, yyyy")}):</td>
+                    <td>${daysLeftOfMonth}</td>
+                </tr>
+                <tr>
+                    <td>Amount allowed per day:</td>
+                    <td>${sprintf("R %.2f", balanceLeftForMonth)}</td>
+                </tr>
+                <tr>
+                    <td>Excess/Short Amount:</td>
+                    <td>${sprintf("R %.2f", excessAmount)}</td>
+                </tr>
+                <tr>
+                    <td>Current Threshold:</td>
+                    <td>${sprintf("R %.2f", threshold)}</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
