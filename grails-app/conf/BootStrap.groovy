@@ -25,6 +25,7 @@ class BootStrap {
                 new controlpanel.MenuItem(name: "Menu Items", component: "menuItem", imgFilename: "menuitems.png", forAdmin: true, menuItemCategory: cpMenuItemCat).save()
                 new controlpanel.MenuItem(name: "Menu Item Categories", component: "menuItemCategory", imgFilename: "menuitemcategories.png", forAdmin: true, menuItemCategory: cpMenuItemCat).save()
                 new controlpanel.MenuItem(name: "Users", component: "user", imgFilename: "users.png", forAdmin: true, menuItemCategory: cpMenuItemCat).save()
+                new controlpanel.MenuItem(name: "Settings", component: "setting", imgFilename: "settings.png", forAdmin: true, menuItemCategory: cpMenuItemCat).save()
 
                 //normal CP items
                 new controlpanel.MenuItem(name: "Notes", component: "note", imgFilename: "notes.png", forAdmin: false, menuItemCategory: cpMenuItemCat).save()
@@ -80,6 +81,9 @@ class BootStrap {
 
                 //BudCategories
                 new pho.budget.BudCategory(name: "Transport", description: "All transport related expenses.", type: budTransTypeExp, parent: null).save()
+
+                //Settings
+                new pho.Setting(name: 'BudgetThreshold', value: '50').save()
 
                 break;
         }

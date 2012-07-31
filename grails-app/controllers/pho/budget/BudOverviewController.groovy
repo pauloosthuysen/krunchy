@@ -1,5 +1,7 @@
 package pho.budget
 
+import pho.GlobalService
+
 class BudOverviewController {
     def beforeInterceptor = [action: this.&checkUser]
 
@@ -14,6 +16,19 @@ class BudOverviewController {
         def curDate = new Date()
         def fromDate = new Date(curDate.year, curDate.month, 1).clearTime()
         def toDate = curDate
+        def incomesTotal = 0
+        def expensesTotal = 0
+        def incomes = BudTransaction.list().findAll{it.category.type.name == "Income"}
+        def expenses = BudTransaction.list().findAll{it.category.type.name == "Expense"}
+        def balance = incomesTotal - expensesTotal
+        def cal = new GregorianCalendar()
+        def daysLeftOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH) - (curDate.date - 1)
+        def balanceLeftForMonth = balance / daysLeftOfMonth
+        def settingsThreshold = GlobalService.getSettingValue('BudgetThreshold')
+        def threshold = settingsThreshold ? settingsThreshold.toInteger() : 100
+        def excessAmount = balance - (threshold * daysLeftOfMonth)
+
+        //get selected dates and assign these to variables. If fromDate > toDate, reset date selections to default
         if (request.getParameter("fromDate")){
             fromDate = Date.parse("y-M-d", ("${request.getParameter("fromDate_year")}-${request.getParameter("fromDate_month")}-${request.getParameter("fromDate_day")}"))
         }
@@ -27,29 +42,18 @@ class BudOverviewController {
             fromDate = new Date(curDate.year, curDate.month, 1).clearTime()
             toDate = curDate
         }
-        def incomes = BudTransaction.list().findAll{it.category.type.name == "Income"}
-        if (fromDate && toDate){
-            incomes = incomes.findAll {it.date >= fromDate && it.date <= toDate}
-        }
-        def incomesTotal = 0
+
+        //get incomes between dates
+        incomes = incomes.findAll {it.date >= fromDate && it.date <= toDate}
         incomes.each {
             incomesTotal += it.amount
         }
-        def expenses = BudTransaction.list().findAll{it.category.type.name == "Expense"}
-        if (fromDate && toDate){
-            expenses = expenses.findAll {it.date >= fromDate && it.date <= toDate}
-        }
-        def expensesTotal = 0
+
+        //get expenses between dates
+        expenses = expenses.findAll {it.date >= fromDate && it.date <= toDate}
         expenses.each {
             expensesTotal += it.amount
         }
-
-        def balance = incomesTotal - expensesTotal
-        def cal = new GregorianCalendar()
-        def daysLeftOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH) - (curDate.date - 1)
-        def balanceLeftForMonth = balance / daysLeftOfMonth
-        def threshold = 50 //TODO: rather get this from a settings table
-        def excessAmount = balance - (threshold * daysLeftOfMonth)
 
         [
             incomes: incomes.sort{it.date},
