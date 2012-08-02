@@ -1,5 +1,7 @@
 package pho
 
+import cr.co.arquetipos.password.PasswordTools
+
 class UserController {
 
     def beforeInterceptor = [action: this.&checkUser,except:['login','doLogin','doLogout']]
@@ -10,9 +12,16 @@ class UserController {
     }
 
     def doLogin(){
-        def user = User.findWhere(email: params["email"],password: params["password"])
+        def users = User.list()
+        def user = null;
+        users.each { u->
+            if (PasswordTools.checkDigestBase64(params["email"], u.email) &&
+                    PasswordTools.checkDigestBase64(params["password"], u.password)){
+                user = u
+            }
+        }
         session.user = user
-        if (user){
+        if (session.user){
             redirect(controller: "home", action: "index")
         }else{
             redirect(controller: "user", action: "login")

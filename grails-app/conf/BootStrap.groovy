@@ -6,11 +6,11 @@ class BootStrap {
         switch(GrailsUtil.environment){
             case 'development':
                 //admin users
-                def adminUser = new pho.User(email: "admin@user.com", password: "1234",isAdmin: true)
+                def adminUser = new pho.User(email: "phcd5Fz0+RkmcWL71XbaJgKGbAu+tJmW", password: "MTqujdqw11J0BAmpPs6CYRCjzrcVO6A/",isAdmin: true)
                 adminUser.save()
 
                 //normal users
-                def normalUser = new pho.User(email: "normal@user.com", password: "1234",isAdmin: false)
+                def normalUser = new pho.User(email: "d/VHTwwFSrrzD+PO5AtQKpSG2a6R/Oaz", password: "Jv4njhw7Nkq/16IWH0BE3E4jJ95tSXX6",isAdmin: false)
                 normalUser.save()
 
                 //menuItemCategory defs
