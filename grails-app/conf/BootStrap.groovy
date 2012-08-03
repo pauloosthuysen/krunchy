@@ -4,6 +4,8 @@ class BootStrap {
 
     def init = { servletContext ->
         switch(GrailsUtil.environment){
+            case 'production':
+                break;
             case 'development':
                 //admin users
                 def adminUser = new pho.User(email: "phcd5Fz0+RkmcWL71XbaJgKGbAu+tJmW", password: "MTqujdqw11J0BAmpPs6CYRCjzrcVO6A/",isAdmin: true)
