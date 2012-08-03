@@ -20,13 +20,13 @@ class BudOverviewController {
         def expensesTotal = 0
         def incomes = BudTransaction.list().findAll{it.category.type.name == "Income"}
         def expenses = BudTransaction.list().findAll{it.category.type.name == "Expense"}
-        def balance = incomesTotal - expensesTotal
+        def balance = 0
         def cal = new GregorianCalendar()
         def daysLeftOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH) - (curDate.date - 1)
-        def balanceLeftForMonth = balance / daysLeftOfMonth
+        def balanceLeftForMonth = 0
         def settingsThreshold = GlobalService.getSettingValue('BudgetThreshold')
         def threshold = settingsThreshold ? settingsThreshold.toInteger() : 100
-        def excessAmount = balance - (threshold * daysLeftOfMonth)
+        def excessAmount = 0
 
         //get selected dates and assign these to variables. If fromDate > toDate, reset date selections to default
         if (request.getParameter("fromDate")){
@@ -54,6 +54,10 @@ class BudOverviewController {
         expenses.each {
             expensesTotal += it.amount
         }
+
+        balance = incomesTotal - expensesTotal
+        balanceLeftForMonth = balance / daysLeftOfMonth
+        excessAmount = balance - (threshold * daysLeftOfMonth)
 
         [
             incomes: incomes.sort{it.date},
