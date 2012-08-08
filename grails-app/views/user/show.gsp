@@ -1,5 +1,5 @@
 
-<%@ page import="pho.User" %>
+<%@ page import="pho.GlobalService; pho.User; cr.co.arquetipos.crypto.Blowfish" %>
 <!doctype html>
 <html>
 	<head>
@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="email-label" class="property-label"><g:message code="user.email.label" default="Email" /></span>
 					
-						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${userInstance}" field="email"/></span>
+						<span class="property-value" aria-labelledby="email-label">${Blowfish.decryptBase64(userInstance.email, GlobalService.getDecryptionPassword())}</span>
 					
 				</li>
 				</g:if>

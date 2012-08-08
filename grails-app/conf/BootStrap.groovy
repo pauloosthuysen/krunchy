@@ -8,11 +8,11 @@ class BootStrap {
                 break;
             case 'development':
                 //admin users
-                def adminUser = new pho.User(email: "phcd5Fz0+RkmcWL71XbaJgKGbAu+tJmW", password: "MTqujdqw11J0BAmpPs6CYRCjzrcVO6A/",isAdmin: true)
+                def adminUser = new pho.User(email: "RBayKsIieNV/iijddKi0aUiXaX/Hpstm", password: "MTqujdqw11J0BAmpPs6CYRCjzrcVO6A/",isAdmin: true)
                 adminUser.save()
 
                 //normal users
-                def normalUser = new pho.User(email: "d/VHTwwFSrrzD+PO5AtQKpSG2a6R/Oaz", password: "Jv4njhw7Nkq/16IWH0BE3E4jJ95tSXX6",isAdmin: false)
+                def normalUser = new pho.User(email: "RBayKsIieNXGe/FzP8vEbYGaQ+z9/SNq", password: "Jv4njhw7Nkq/16IWH0BE3E4jJ95tSXX6",isAdmin: false)
                 normalUser.save()
 
                 //menuItemCategory defs
@@ -86,6 +86,7 @@ class BootStrap {
 
                 //Settings
                 new pho.Setting(name: 'BudgetThreshold', value: '50').save()
+                new pho.Setting(name: 'DecryptKey', value: '654sdfsdr4444$$').save()
 
                 break;
         }

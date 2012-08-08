@@ -1,4 +1,4 @@
-<%@ page import="pho.User" %>
+<%@ page import="pho.GlobalService; cr.co.arquetipos.crypto.Blowfish; pho.User" %>
 
 
 
@@ -7,7 +7,7 @@
 		<g:message code="user.email.label" default="Email" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="email" name="email" required="" value="${userInstance?.email}"/>
+	<g:field type="email" name="email" required="" value="${userInstance? Blowfish.decryptBase64(userInstance?.email, GlobalService.getDecryptionPassword()) : ''}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'password', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="user.password.label" default="Password" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:passwordField name="password" maxlength="8" required="" value="${userInstance?.password}"/>
+	<g:passwordField name="password" maxlength="8" required="" value=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'isAdmin', 'error')} ">

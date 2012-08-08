@@ -1,5 +1,5 @@
 
-<%@ page import="pho.User" %>
+<%@ page import="pho.GlobalService; cr.co.arquetipos.crypto.Blowfish; pho.User" %>
 <!doctype html>
 <html>
 	<head>
@@ -41,7 +41,7 @@
 				<g:each in="${userInstanceList}" status="i" var="userInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${userInstance.id}">${fieldValue(bean: userInstance, field: "email")}</g:link></td>
+						<td><g:link action="show" id="${userInstance.id}">${Blowfish.decryptBase64(fieldValue(bean: userInstance, field: "email").toString(), GlobalService.getDecryptionPassword())}</g:link></td>
 					
 						<td>************</td>
 					

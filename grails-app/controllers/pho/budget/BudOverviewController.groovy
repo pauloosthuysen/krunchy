@@ -55,6 +55,7 @@ class BudOverviewController {
             expensesTotal += it.amount
         }
 
+        //calculate and update variables
         balance = incomesTotal - expensesTotal
         balanceLeftForMonth = balance / daysLeftOfMonth
         excessAmount = balance - (threshold * daysLeftOfMonth)
