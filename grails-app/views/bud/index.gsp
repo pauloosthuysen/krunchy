@@ -57,11 +57,11 @@
                 </g:each>
             </div>
         </g:if>
+        <g:if test="${session.user}">
+            <div id="logoutPanel">
+                <g:render template="/logoutPanel"/>
+            </div>
+        </g:if>
     </div>
-    <g:if test="${session.user}">
-        <div id="logoutPanel">
-            <g:render template="/logoutPanel"/>
-        </div>
-    </g:if>
 </body>
 </html>
