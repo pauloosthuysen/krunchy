@@ -48,6 +48,7 @@ body {
     -moz-box-shadow: 0 0 0.3em #333333;
     -webkit-box-shadow: 0 0 0.3em #333333;
     box-shadow: 0 0 0.3em #333333;
+    margin-top: 10px;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */

@@ -133,9 +133,9 @@
                 </tr>
             </table>
         </div>
-    </div>
-    <div id="logoutPanel">
-        <g:render template="/logoutPanel"/>
+        <div id="logoutPanel">
+            <g:render template="/logoutPanel"/>
+        </div>
     </div>
 </body>
 </html>

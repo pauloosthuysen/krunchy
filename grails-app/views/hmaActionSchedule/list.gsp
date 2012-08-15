@@ -78,10 +78,11 @@
     <div class="pagination">
         <g:paginate total="${hmaActionScheduleInstanceTotal}"/>
     </div>
+    <div id="logoutPanel">
+        <g:render template="/logoutPanel"/>
+    </div>
 </div>
 
-<div id="logoutPanel">
-    <g:render template="/logoutPanel"/>
-</div>
+
 </body>
 </html>

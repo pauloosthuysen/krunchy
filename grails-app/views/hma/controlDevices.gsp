@@ -95,6 +95,9 @@
                 </g:else>
             </table>
         </g:each>
+        <div id="logoutPanel">
+            <g:render template="/logoutPanel"/>
+        </div>
     </div>
 </body>
 </html>

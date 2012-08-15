@@ -63,9 +63,9 @@
 			<div class="pagination">
 				<g:paginate total="${budTransactionInstanceTotal}" />
 			</div>
+            <div id="logoutPanel">
+                <g:render template="/logoutPanel"/>
+            </div>
 		</div>
-        <div id="logoutPanel">
-            <g:render template="/logoutPanel"/>
-        </div>
 	</body>
 </html>
