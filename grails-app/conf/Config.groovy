@@ -66,6 +66,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://pho1.dyndns-home.com/krunchy-0.2"
     }
 }
 

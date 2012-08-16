@@ -46,6 +46,9 @@
       #summary div.total div.totValue{
           width: 250px;
       }
+      #logoutPanel{
+          margin: 30px;
+      }
   </style>
 </head>
 <body>
@@ -129,6 +132,9 @@
                     <td>${sprintf("R %.2f", threshold)}</td>
                 </tr>
             </table>
+        </div>
+        <div id="logoutPanel">
+            <g:render template="/logoutPanel"/>
         </div>
     </div>
 </body>

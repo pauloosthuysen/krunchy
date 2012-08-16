@@ -18,7 +18,7 @@
   </style>
 </head>
 <body>
-    <div class="body">
+    <div class="content">
         <div id="loginPanel">
             <g:render template="/loginPanel"/>
         </div>

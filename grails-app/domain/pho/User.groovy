@@ -3,8 +3,8 @@ package pho
 class User {
 
     static constraints = {
-        email(email: true,blank: false, unique: true)
-        password(blank: false,size: 4..8)
+        email(blank: false)
+        password(blank: false)
         isAdmin()
     }
     String email
