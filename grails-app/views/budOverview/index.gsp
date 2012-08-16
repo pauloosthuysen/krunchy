@@ -87,6 +87,7 @@
                         <td colspan="3" class="total">${sprintf("R %.2f", incomesTotal)}</td>
                     </tr>
                 </table>
+                <g:link controller="budTransaction" action="create" params="[type:'Income',backTo:'budOverview']">New Income</g:link>
             </div>
             <div id="expenses">
                 <h2>Expenses</h2>
@@ -107,6 +108,7 @@
                         <td colspan="3" class="total">${sprintf("R %.2f", expensesTotal)}</td>
                     </tr>
                 </table>
+                <g:link controller="budTransaction" action="create" params="[type:'Expense',backTo:'budOverview']">New Expense</g:link>
             </div>
         </div>
         <div id="summary">

@@ -12,7 +12,11 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><a class="budget" href="${createLink(uri: '/bud')}"><g:message code="default.bud.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <g:if test="${backTo}">
+                    <li><g:link class="budOverview" controller="${backTo}" action="index">Overview</g:link></li>
+                </g:if><g:else>
+				    <li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                </g:else>
 			</ul>
 		</div>
 		<div id="create-budTransaction" class="content scaffold-create" role="main">
@@ -27,7 +31,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="save" >
+			<g:form action="save" params="[type: type, backTo: backTo]" >
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

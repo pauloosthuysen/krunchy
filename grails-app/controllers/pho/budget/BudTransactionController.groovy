@@ -23,4 +23,23 @@ class BudTransactionController {
         return [location: loc, budTransactionInstanceList: transactions, budTransactionInstanceTotal: transactions.size()]
     }
 
+    def create() {
+        [budTransactionInstance: new BudTransaction(params), type: request.getParameter("type"),backTo: request.getParameter("backTo")]
+    }
+
+    def save() {
+        def budTransactionInstance = new BudTransaction(params)
+        if (!budTransactionInstance.save(flush: true)) {
+            render(view: "create", model: [budTransactionInstance: budTransactionInstance, type: params.get('type'), backTo: params.get('backTo')])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'budTransaction.label', default: 'BudTransaction'), budTransactionInstance.id])
+        if (request.getParameter('backTo')){
+            redirect(controller: request.getParameter('backTo'), action: "index")
+        }else{
+            redirect(action: "show", id: budTransactionInstance.id)
+        }
+    }
+
 }
