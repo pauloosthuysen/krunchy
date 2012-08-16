@@ -1,6 +1,7 @@
 package pho.budget
 
 import pho.GlobalService
+import grails.converters.JSON
 
 class BudOverviewController {
     def beforeInterceptor = [action: this.&checkUser]
@@ -73,5 +74,17 @@ class BudOverviewController {
             excessAmount: excessAmount.toBigDecimal(),
             threshold: threshold.toBigDecimal()
         ]
+    }
+
+    def getTransactionDetail(){
+        def tr = BudTransaction.findWhere(id: Long.parseLong(params['id']))
+        def fa = [
+            description: tr.description,
+            amount: sprintf("R %.2f", tr.amount.toBigDecimal()),
+            date: tr.date.format("yyyy-MM-dd"),
+            location: tr.location.toString(),
+            category: tr.category.toString()
+        ]
+        render fa as JSON
     }
 }

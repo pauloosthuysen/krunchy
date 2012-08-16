@@ -49,9 +49,40 @@
       #logoutPanel{
           margin: 30px;
       }
+      tr.transactionRow{
+          cursor: pointer;
+      }
   </style>
+  <g:javascript library="jquery-ui"/>
 </head>
 <body>
+    <g:javascript>
+        $(function(){
+            $('#transactionDetailPopup').dialog({
+                modal: true,
+                height: 400,
+                width: 600,
+                autoOpen: false,
+                buttons: {
+                    "Close": function(){
+                        $('#transactionDetailPopup').dialog('close');
+                    }
+                },
+                resizable: false
+            });
+        });
+
+        function showTransactionDetail(id){
+            $.getJSON('${createLink([controller: 'budOverview', action: 'getTransactionDetail'])}', {id: id}, function(data){
+                $('#transactionDescriptionValue').text(data.description);
+                $('#transactionAmountValue').text(data.amount);
+                $('#transactionDateValue').text(data.date);
+                $('#transactionCategoryValue').text(data.category);
+                $('#transactionLocationValue').text(data.location);
+                $('#transactionDetailPopup').dialog('open');
+            });
+        }
+    </g:javascript>
     <div class="nav" role="navigation">
         <ul>
             <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -77,7 +108,7 @@
                         <th>Amount</th>
                     </tr>
                     <g:each in="${incomes}" var="i">
-                        <tr>
+                        <tr onclick="showTransactionDetail(${i.id})" class="transactionRow">
                             <td>${i.date.format("yyyy-MM-dd")}</td>
                             <td>${i.description}</td>
                             <td class="amount">${sprintf("R %.2f", i.amount.toBigDecimal())}</td>
@@ -98,7 +129,7 @@
                         <th>Amount</th>
                     </tr>
                     <g:each in="${expenses}" var="i">
-                        <tr>
+                        <tr onclick="showTransactionDetail(${i.id})" class="transactionRow">
                             <td>${i.date.format("yyyy-MM-dd")}</td>
                             <td>${i.description}</td>
                             <td class="amount">${sprintf("R %.2f", i.amount.toBigDecimal())}</td>
@@ -139,5 +170,6 @@
             <g:render template="/logoutPanel"/>
         </div>
     </div>
+    <div id="transactionDetailPopup"><g:render template="transactionDetailPopup"/></div>
 </body>
 </html>
